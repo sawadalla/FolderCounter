@@ -1,0 +1,23 @@
+import os
+important = {
+	"ABC": 0,
+	"XYZ": 0
+}
+files = {}
+for i in os.listdir(os.getcwd()):
+	if os.path.isdir(os.path.join(os.getcwd(),i)):
+		for valid in important:
+			if(i.startswith(valid)):
+				important[valid] += 1
+				all_info = os.listdir(os.path.join(os.getcwd(),i))
+				all_info = [f for f in all_info if not os.path.isdir(os.path.join(os.getcwd(),i,f))]
+				files[i] = all_info
+print("Number of important folders")
+for i in important:
+	print(i+" = "+str(important[i]))
+print("\nFiles:")
+for file in files:
+	print(file)
+	for f in files[file]:
+		print(f)
+	print()
